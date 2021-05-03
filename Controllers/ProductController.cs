@@ -11,7 +11,28 @@ namespace M05.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            var context = new Models.NorthwindEntities();
+            var product = context.Products.ToList();
+            return View(product);
+        }
+
+        public ActionResult Display(int ID)
+        {
+            var context = new Models.NorthwindEntities();
+            var product = context.Products.FirstOrDefault(p => p.ProductID == ID);
+            return View("DinamycView", product);
+        }
+
+        public ActionResult DisplayExtern(int ID)
+        {
+            var Extern = new Models.ExternProduct
+            {
+                ProductName = "Producto externo",
+                UnitPrice = 10,
+                UnitsInStock = 100,
+                ExternID = 50
+            };
+            return View("DinamycView", Extern);
         }
 
         // Details
