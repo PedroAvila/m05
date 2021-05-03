@@ -11,30 +11,37 @@
     <title>Index</title>
 </head>
 <body>
-    <div>
-        <p>Razor no interpretará este texto como código ya que no se encuentra el simbolo Arroba "at" @@</p>
-        <p>La hora actual del servidor es: </p>
-        @DateTime.Now.ToShortTimeString() 
-        <p>Correo del administrador mmunoz@@dotnetpuebla.com</p>
+    Hola Razor
+    <div>   
+        <!-- Este es un comentario HTML y aparece en el contenido enviado al cliente -->
+        @* Este texto es un comentario de código y no debe ser generado por el motor de vista razor *@
 
-        @{
-            @:Este texto se encuentra en un bloque de código
-            @: pero el delimitador @@: lo declara cojhhrtfyhfrtytryrtmo contenido.
+        @{ 
+            double precio = 2;
+            <span>Precio incluyendo impuestos: @(precio * 1.16)</span>
+        }
 
-            string mensaje = "Hola, mundo";
-            <div>
-                @mensaje
-            </div>
-            @: Este es el valor de la variable mensaje: @mensaje
-            <br />
-                <text>
-                    Esto es contenido y no código.
-                    Podemos también incluir código.
-                    Como en la siguiente línea. <br />
-                    @mensaje
-                </text>
-                    }
-            </div>
+        @{ 
+// Razor interpreta el contenido de este bloque como
+// código del servidor
+        }
+
+        @if (precio < 10)
+        {
+            precio = precio * 2;
+        }else
+        {
+            precio = precio * 1.5;
+        }
+        <br />
+        Nuevo precio: @precio
+        <br />
+
+        @foreach (var item in ViewBag.dias)
+        {
+            <div>@item</div>
+        }
+    </div>
 
 </body>
 </html>
