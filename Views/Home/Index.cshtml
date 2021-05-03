@@ -11,7 +11,30 @@
     <title>Index</title>
 </head>
 <body>
-    <div> 
-    </div>
+    <div>
+        <p>Razor no interpretará este texto como código ya que no se encuentra el simbolo Arroba "at" @@</p>
+        <p>La hora actual del servidor es: </p>
+        @DateTime.Now.ToShortTimeString()
+        <p>Correo del administrador mmunoz@@dotnetpuebla.com</p>
+
+        @{
+            @:Este texto se encuentra en un bloque de código
+            @: pero el delimitador @@: lo declara como contenido.
+
+            string mensaje = "Hola, mundo";
+            <div>
+                @mensaje
+            </div>
+            @: Este es el valor de la variable mensaje: @mensaje
+            <br />
+                <text>
+                    Esto es contenido y no código.
+                    Podemos también incluir código.
+                    Como en la siguiente línea. <br />
+                    @mensaje
+                </text>
+                    }
+            </div>
+
 </body>
 </html>
